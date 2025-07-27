@@ -3,25 +3,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Education Website</title>
-    <link rel="stylesheet" href="style.css">
+    <title>My Projects Portfolio</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-image {
+            width: 100%;
+            display: block;
+            height: 0;
+            padding-bottom: 66.66%;
+            background-size: cover;
+            background-position: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .card-image:not([style*="background-image"]) {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+
+        .card-title {
+            font-size: 1.4em;
+            margin: 15px 15px 10px;
+            color: #0056b3;
+        }
+
+        .card-description {
+            font-size: 0.95em;
+            margin: 0 15px 15px;
+            color: #666;
+            flex-grow: 1;
+        }
+
+        .card-button {
+            display: block;
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 12px 15px;
+            text-decoration: none;
+            border-radius: 0 0 8px 8px;
+            transition: background-color 0.3s ease;
+            margin-top: auto;
+        }
+
+        .card-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
 
-    <div class="head">
-        <h1>Education Website Template</h1>
-    </div>
-
-    <div class="containar">
-        <a class="project" href="./Edu-Smart/index.html" target="_blank">Edu-Smart</a>
-        <a class="project" href="./Edu-Stage/index.html" target="_blank">Edu-Stage</a>
-        <a class="project" href="./Skill Hub/index.html" target="_blank">Skill Hub</a>
-        <a class="project" href="./Educrown/index.html" target="_blank">Educrown</a>
-        <a class="project" href="./Grad School/index.html" target="_blank">Grad School</a>
-        <a class="project" href="./Wiser/index.html" target="_blank">Wiser</a>
-        <!-- <a class="project" href="" target="_blank"></a> -->
-       
+    <div class="card-grid" id="cardContainer">
     </div>
     
+    <script>
+        
+        const cardData = [
+    {
+        "imageSrc": "Edu-Smart/Screenshot.png",
+        "title": "Edu-Smart",
+        "description": "A project from the Edu-Smart folder.",
+        "link": "./Edu-Smart/index.html"
+    },
+    {
+        "imageSrc": "Edu-Stage/Screenshot.png",
+        "title": "Edu-Stage",
+        "description": "A project from the Edu-Stage folder.",
+        "link": "./Edu-Stage/index.html"
+    },
+    {
+        "imageSrc": "Educrown/Screenshot.png",
+        "title": "Educrown",
+        "description": "A project from the Educrown folder.",
+        "link": "./Educrown/index.html"
+    },
+    {
+        "imageSrc": "Grad School/Screenshot.png",
+        "title": "Grad School",
+        "description": "A project from the Grad School folder.",
+        "link": "./Grad School/index.html"
+    },
+    {
+        "imageSrc": "Skill Hub/Screenshot.png",
+        "title": "Skill Hub",
+        "description": "A project from the Skill Hub folder.",
+        "link": "./Skill Hub/index.html"
+    },
+    {
+        "imageSrc": "Wiser/Screenshot.png",
+        "title": "Wiser",
+        "description": "A project from the Wiser folder.",
+        "link": "./Wiser/index.html"
+    }
+]
+
+        const cardContainer = document.getElementById('cardContainer');
+
+        function createCard(data) {
+            const card = document.createElement('div');
+            card.classList.add('card');
+
+            const imgContainer = document.createElement('div');
+            imgContainer.classList.add('card-image');
+            imgContainer.style.backgroundImage = `url('${data.imageSrc}')`;
+
+            const title = document.createElement('h3');
+            title.classList.add('card-title');
+            title.textContent = data.title;
+
+            const description = document.createElement('p');
+            description.classList.add('card-description');
+            description.textContent = data.description;
+
+            const button = document.createElement('a');
+            button.href = data.link;
+            button.classList.add('card-button');
+            button.textContent = 'Show Project';
+            button.target = '_blank';
+            button.rel = 'noopener noreferrer';
+
+            card.appendChild(imgContainer);
+            card.appendChild(title);
+            card.appendChild(description);
+            card.appendChild(button);
+
+            return card;
+        }
+
+        cardData.forEach(data => {
+            const newCard = createCard(data);
+            cardContainer.appendChild(newCard);
+        });
+    </script>
 </body>
 </html>
